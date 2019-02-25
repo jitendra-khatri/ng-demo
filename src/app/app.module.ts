@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule  } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -11,25 +11,35 @@ import { AgmCoreModule, MapsAPILoader  } from '@agm/core';
 import { GLOBAL_VARIABLE } from './global';
 import { AgmDirectionModule } from 'agm-direction';
 import { MaidInformationComponent } from './maid-information/maid-information.component' ;
+import { routing }        from './app.routing';
+
+import { LoginComponent } from './login';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LandingPageComponent,
-    LeftPaneInfoComponent,
-    MaidInformationComponent
-  ],
+
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule ,
+    routing,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD-4l4eh6M-NeNH8UDPaWyPeojHyFgRV5g',
       libraries: ['geometry']
     }),
     AgmDirectionModule
   ],
-  providers: [GLOBAL_VARIABLE],
+declarations: [
+        AppComponent,
+        LoginComponent,
+        
+        ForgotPasswordComponent ,
+        ResetPasswordComponent,
+		LandingPageComponent,
+		LeftPaneInfoComponent,
+		MaidInformationComponent		],
+  providers: [ GLOBAL_VARIABLE],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
