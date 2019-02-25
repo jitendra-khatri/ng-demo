@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
@@ -16,14 +17,20 @@ import { routing }        from './app.routing';
 import { LoginComponent } from './login';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { BookingComponent } from './booking/booking.component';
+import { RegisterComponent } from './register/register.component';
+
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
 
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule ,
     routing,
+    NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD-4l4eh6M-NeNH8UDPaWyPeojHyFgRV5g',
       libraries: ['geometry']
@@ -38,7 +45,9 @@ declarations: [
         ResetPasswordComponent,
 		LandingPageComponent,
 		LeftPaneInfoComponent,
-		MaidInformationComponent		],
+		MaidInformationComponent,
+		BookingComponent,
+		RegisterComponent		],
   providers: [ GLOBAL_VARIABLE],
   bootstrap: [AppComponent]
 })
