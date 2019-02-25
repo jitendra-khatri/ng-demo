@@ -1,0 +1,21 @@
+.bbr_wrapper>* {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.bbr_infocont {
+  width: 50%;
+  margin-left: 30px;
+}
+
+.bbr_infocont h2 {
+  margin-bottom: 30px;
+}
+
+.bbr_info {
+  display: inline-block;
+}
+
+.bbr_btns {
+  display: inline-block;
+}

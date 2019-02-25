@@ -1,0 +1,32 @@
+<div class="bbr_mapContainer">
+	<div class="bbr_showMap">
+		<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">  
+			<agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true" (dragEnd)="draggableEnd($event)" *ngIf="!isSearch"></agm-marker>
+			<agm-direction [origin]="searchLocation" [destination]="ownLocation" *ngIf="isSearch"></agm-direction>
+		</agm-map>
+	</div>
+	<div class="bbr_mapOverlay">
+		<div class="bbr_wrapper">
+			Finding at <strong>{{locationName}}</strong> for
+		</div>
+		<ng-container *ngIf="!isSearch">
+			<div class="bbr_wrapper"> 
+				<ul class="bbr_listing">
+					<li class="bbr_list-indx" [ngClass]="{'bbr_active':service.isActive}" (click)="activeService(i,$event)" *ngFor="let service of listServices; let i=index;">
+						<img class="" [src]="service.img" *ngIf="service.img && service.img!==''">
+						<label for="labelName">{{service.label}}</label>
+						<label for="label-pricing">{{service.price}}/hr</label>
+					</li>
+				</ul>
+				<div class="searchButton">
+					<button class="bbr_searchBtn" *ngIf="locationName!='' && activeServices && activeServices.isActive" (click)="activeSearch()">Search Maids</button>
+				</div>
+			</div>
+		</ng-container>
+		<ng-container *ngIf="isSearch">
+			<div class="bbr_mapOverlay">
+				<app-maid-information></app-maid-information>
+			</div>
+		</ng-container>	
+	</div>
+</div> 
