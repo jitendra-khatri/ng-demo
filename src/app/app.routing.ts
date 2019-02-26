@@ -1,10 +1,10 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './login';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { LoginComponent } from './components/login/login.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
-import { RegisterComponent } from './register';
+import { RegisterComponent } from './components/register';
 
 const appRoutes: Routes = [
    
@@ -14,7 +14,7 @@ const appRoutes: Routes = [
 	{ path: 'forgot-password', component: ForgotPasswordComponent },
 	{ path: 'reset-password', component: ResetPasswordComponent },
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: 'login' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

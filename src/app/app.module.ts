@@ -6,19 +6,19 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { LeftPaneInfoComponent } from './left-pane-info/left-pane-info.component';
+import {LandingPageComponent} from './components/landing-page/landing-page.component';
+import { LeftPaneInfoComponent } from './components/left-pane-info/left-pane-info.component';
 import { AgmCoreModule, MapsAPILoader  } from '@agm/core';
 import { GLOBAL_VARIABLE } from './global';
 import { AgmDirectionModule } from 'agm-direction';
-import { MaidInformationComponent } from './maid-information/maid-information.component' ;
+import { MaidInformationComponent } from './components/maid-information/maid-information.component' ;
 import { routing }        from './app.routing';
 
-import { LoginComponent } from './login';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { BookingComponent } from './booking/booking.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './components/login';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { BookingComponent } from './components/booking/booking.component';
+import { RegisterComponent } from './components/register/register.component';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 

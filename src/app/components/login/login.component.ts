@@ -1,21 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { AlertService, AuthenticationService } from '../service';
 
-@Component({
-  selector: 'app-reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.css']
-})
-export class ResetPasswordComponent implements OnInit {
-	resetPasswordForm: FormGroup;
+import {  AuthenticationService } from '../../service/authentication.service';
+import {  AlertService } from '../../service/alert.service';
+
+@Component({templateUrl: 'login.component.html'})
+export class LoginComponent implements OnInit {
+    loginForm: FormGroup;
     loading = false;
     submitted = false;
     returnUrl: string;
 
-  constructor(
+    constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
@@ -29,27 +27,28 @@ export class ResetPasswordComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.resetPasswordForm = this.formBuilder.group({
+        this.loginForm = this.formBuilder.group({
             mobileNumber: ['', Validators.required],
-			newPassword: ['', Validators.required]		
+            password: ['', Validators.required]
         });
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
- // convenience getter for easy access to form fields
-    get f() { return this.resetPasswordForm.controls; }
+
+    // convenience getter for easy access to form fields
+    get f() { return this.loginForm.controls; }
 
     onSubmit() {
         this.submitted = true;
 
         // stop here if form is invalid
-        if (this.resetPasswordForm.invalid) {
+        if (this.loginForm.invalid) {
             return;
         }
 
         this.loading = true;
-        this.authenticationService.resetPassword(this.f.mobileNumber.value,this.f.newPassword.value)
+        this.authenticationService.login(this.f.mobileNumber.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {
@@ -59,6 +58,5 @@ export class ResetPasswordComponent implements OnInit {
                     this.alertService.error(error);
                     this.loading = false;
                 });
-		this.router.navigate(['/reset_password']);		
     }
 }

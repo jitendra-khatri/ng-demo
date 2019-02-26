@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { AlertService, AuthenticationService } from '../service';
+import { AlertService, AuthenticationService } from '../../service';
 
 @Component({
   selector: 'app-forgot-password',
