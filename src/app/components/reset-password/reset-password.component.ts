@@ -31,8 +31,9 @@ export class ResetPasswordComponent implements OnInit {
 
     ngOnInit() {
         this.resetPasswordForm = this.formBuilder.group({
-            mobileNumber: ['', Validators.required],
-			newPassword: ['', Validators.required]		
+            otp: ['', Validators.required],
+            newPassword: ['', Validators.required],
+            confirmPassword: ['', Validators.required]
         });
 
         // get return url from route parameters or default to '/'
@@ -50,16 +51,17 @@ export class ResetPasswordComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.resetPassword(this.f.mobileNumber.value,this.f.newPassword.value)
+        this.authenticationService.resetPassword(this.f.otp.value,this.f.newPassword.value,
+            this.f.confirmPassword.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    this.router.navigate(['/login']);
                 },
                 error => {
                     this.alertService.error(error);
                     this.loading = false;
                 });
-		this.router.navigate(['/reset_password']);		
+		
     }
 }

@@ -34,8 +34,9 @@ export class AuthenticationService {
             }));
     }
 	
-	validateOTP(mobileNumber: string,otp:string) {
-        return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { mobileNumber, otp })
+	validateOTP(mobile_number: string) {
+        return this.http.post<any>(`${environment.apiUrl}/users/forgot-password`, { mobile_number 
+        })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
@@ -48,8 +49,8 @@ export class AuthenticationService {
             }));
     }
 	
-	resetPassword(mobileNumber: string, password: string) {
-        return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { mobileNumber, password })
+	resetPassword(otp: string, password: string, confirm_password:string        ) {
+        return this.http.post<any>(`${environment.apiUrl}/users/reenter-password`, { otp, password, confirm_password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {

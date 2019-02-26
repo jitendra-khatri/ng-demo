@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
             { item_id: 2, item_text: 'House Cleaning' },
             { item_id: 3, item_text: 'Dish Washing' },
             { item_id: 4, item_text: 'Car Cleaning' },
-            { item_id: 5, item_text: 'Car Cleaning' },
+            { item_id: 5, item_text: 'All rounder' },
           ];
           this.selectedItems = [
             
@@ -76,6 +76,7 @@ export class RegisterComponent implements OnInit {
             selectAllText: 'Select All',
             unSelectAllText: 'UnSelect All',
             itemsShowLimit: 3,
+            enableCheckAll : false,
             allowSearchFilter: true
           };
           this.ServicesLocSettings = {
@@ -85,6 +86,7 @@ export class RegisterComponent implements OnInit {
             selectAllText: 'Select All',
             unSelectAllText: 'UnSelect All',
             itemsShowLimit: 3,
+            enableCheckAll : false,
             allowSearchFilter: true
           };
     }
