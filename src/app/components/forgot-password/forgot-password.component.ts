@@ -49,16 +49,16 @@ export class ForgotPasswordComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.validateOTP(this.f.mobileNumber.value,this.f.otp.value)
+        this.authenticationService.validateOTP(this.f.mobileNumber.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    this.router.navigate(['/reset-password']);
                 },
                 error => {
                     this.alertService.error(error);
                     this.loading = false;
                 });
-		this.router.navigate(['/reset_password']);		
+		
     }
 }
