@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
 body {
-  font: 14px/1.25 Tahoma, helvetica, arial, sans-serif;
-  background: #404040;
-  color: #242424;
+ 
   min-width: 320px;
 }
