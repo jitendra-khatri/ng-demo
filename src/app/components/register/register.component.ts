@@ -35,19 +35,20 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            username: ['', Validators.required],
-            aadhaarNumber : ['', Validators.required, Validators.minLength(12)],
+            first_name: ['', Validators.required],
+            last_name: ['', Validators.required],
+            // username: ['', Validators.required],
+            aadhaar_number : ['', Validators.required],
             street : ['', Validators.required],
             city : ['', Validators.required],
             state : ['', Validators.required],
             country : ['', Validators.required],
             zipcode : ['', Validators.required],
-            emailId :  ['', Validators.required],
-            mobilenum :  ['', Validators.required, Validators.minLength(10)],
-            password: ['', [Validators.required, Validators.minLength(6)]],
-            user: ['', Validators.required]
+            email :  ['', Validators.required],
+            mobile :  ['', Validators.required],
+            password: ['', Validators.required], 
+             service_provider: [false, Validators.required],
+            // applicable_services: ['', Validators.required]
         });
         this.ServicesList = [
             { item_id: 1, item_text: 'Cooking' },
@@ -101,6 +102,7 @@ export class RegisterComponent implements OnInit {
         this.submitted = true;
 
         // stop here if form is invalid
+        console.log("Hament Here================>", this.registerForm)
         if (this.registerForm.invalid) {
             return;
         }

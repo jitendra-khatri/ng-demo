@@ -1,8 +1,20 @@
 ﻿export class User {
-    id: number;
-    username: string;
+    //id: number;
+    //username: string;
     password: string;
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     token: string;
+    email: string 
+    mobile: number
+    street: string
+
+    city: string
+    state: string
+    country: string
+    zipcode:number
+    aadhaar_number: number
+    service_provider: string
+    applicable_services: Array<String>;
+    applicable_areas: any; 
 }

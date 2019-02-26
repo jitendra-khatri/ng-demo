@@ -21,6 +21,7 @@ import { BookingComponent } from './components/booking/booking.component';
 import { RegisterComponent } from './components/register/register.component';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 @NgModule({
 
@@ -47,7 +48,8 @@ declarations: [
 		LeftPaneInfoComponent,
 		MaidInformationComponent,
 		BookingComponent,
-		RegisterComponent		],
+		RegisterComponent,
+		MainPageComponent		],
   providers: [ GLOBAL_VARIABLE],
   bootstrap: [AppComponent]
 })
