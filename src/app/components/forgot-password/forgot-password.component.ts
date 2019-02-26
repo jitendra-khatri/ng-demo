@@ -1,18 +1,21 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { AlertService, AuthenticationService } from '../../service';
 
-import { AlertService, AuthenticationService } from '../service';
-
-@Component({templateUrl: 'login.component.html'})
-export class LoginComponent implements OnInit {
-    loginForm: FormGroup;
+@Component({
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.css']
+})
+export class ForgotPasswordComponent implements OnInit {
+	forgotPasswordForm: FormGroup;
     loading = false;
     submitted = false;
     returnUrl: string;
 
-    constructor(
+  constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
@@ -26,36 +29,36 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loginForm = this.formBuilder.group({
+        this.forgotPasswordForm = this.formBuilder.group({
             mobileNumber: ['', Validators.required],
-            password: ['', Validators.required]
+			otp: ['', Validators.required]		
         });
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
-
-    // convenience getter for easy access to form fields
-    get f() { return this.loginForm.controls; }
+ // convenience getter for easy access to form fields
+    get f() { return this.forgotPasswordForm.controls; }
 
     onSubmit() {
         this.submitted = true;
 
         // stop here if form is invalid
-        if (this.loginForm.invalid) {
+        if (this.forgotPasswordForm.invalid) {
             return;
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.mobileNumber.value, this.f.password.value)
+        this.authenticationService.validateOTP(this.f.mobileNumber.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    this.router.navigate(['/reset-password']);
                 },
                 error => {
                     this.alertService.error(error);
                     this.loading = false;
                 });
+		
     }
 }

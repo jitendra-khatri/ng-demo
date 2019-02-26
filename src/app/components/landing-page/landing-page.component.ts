@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GeocodeConverterService} from "../service/geocode-converter.service";
+import { GeocodeConverterService} from '../../service/geocode-converter.service';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { } from 'googlemaps';
 
