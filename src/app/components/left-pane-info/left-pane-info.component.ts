@@ -34,7 +34,11 @@ export class LeftPaneInfoComponent implements OnInit {
         label: "Settings",
         value: 6,
         isActive: false
-    }];
+        }, {
+            label: "Logout",
+            value: 7,
+            isActive: false
+        }];
     constructor() {
 
         this.userImgPath = '/assets/images/user-icon.png';
