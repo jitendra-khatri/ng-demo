@@ -8,11 +8,10 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 export class MaidInformationComponent implements OnInit {
 
   userImgPath:string;
-  
+  ratingIco:string;  
   constructor() { 
     this.userImgPath = '/assets/images/user-icon.png';
-
-
+    this.ratingIco = '/assets/images/rating.png'
   }
 
   ngOnInit() {

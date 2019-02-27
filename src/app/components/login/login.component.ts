@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
     returnUrl: string;
+    errorState:boolean=false;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-
+        this.errorState=false;
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
@@ -53,13 +54,12 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    console.log("hello world");
                     this.router.navigate(['/main']);
                 },
                 error => {
-                    console.log("hament");
                     this.alertService.error(error);
-                    this.loading = false;
+                     this.loading = false;
+                    this.errorState =true;
                 });
     }
 }
