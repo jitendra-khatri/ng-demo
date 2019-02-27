@@ -6,7 +6,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import {LandingPageComponent} from './components/landing-page/landing-page.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import {LandingProviderPageComponent} from './components/main-provider/landing-provider-page/landing-provider-page.component';
 import { LeftPaneInfoComponent } from './components/left-pane-info/left-pane-info.component';
 import { AgmCoreModule, MapsAPILoader  } from '@agm/core';
 import { GLOBAL_VARIABLE } from './global';
@@ -37,7 +38,7 @@ import { HistoryComponentComponent } from './components/history-component/histor
     routing,
     NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyD-4l4eh6M-NeNH8UDPaWyPeojHyFgRV5g',
+      apiKey: 'AIzaSyCoPXBL4PpQc35PCHE_KoAXSyfvxJK5tsQ',
       libraries: ['geometry']
     }),
     AgmDirectionModule
@@ -45,10 +46,10 @@ import { HistoryComponentComponent } from './components/history-component/histor
 declarations: [
         AppComponent,
         LoginComponent,
-        
         ForgotPasswordComponent ,
         ResetPasswordComponent,
-		LandingPageComponent,
+    LandingPageComponent,
+    LandingProviderPageComponent,
 		LeftPaneInfoComponent,
 		MaidInformationComponent,
 		BookingComponent,

@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { GeocodeConverterService} from '../../service/geocode-converter.service';
+import { GeocodeConverterService} from '../../../service/geocode-converter.service';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { } from 'googlemaps';
 
 declare var $: any;
 
-@Component({
-  selector: 'app-landing-page',
-  templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.css'],
+@Component({ 
+  selector: 'app-landing-provider-page',
+  templateUrl: './landing-provider-page.component.html',
+  styleUrls: ['./landing-provider-page.component.css'],
   providers: [Location, { provide: LocationStrategy, useClass: PathLocationStrategy }]
 })
-export class LandingPageComponent implements OnInit {
+export class LandingProviderPageComponent implements OnInit {
   
    latitude: number ;
    longitude: number;
@@ -27,35 +27,35 @@ export class LandingPageComponent implements OnInit {
     price:"100",
     type:"hourly",
     image:"",
-    label:"Cooking",
+    label:"Dish Washing",
     isActive:false
   }, {
     name: "cleaning",
     price: "100",
     type: "hourly",
     image: "",
-      label: "House Cleaning",
+      label: "Floor Sweep",
       isActive: false
     }, {
       name: "washing",
       price: "100",
       type: "hourly",
       image: "",
-      label: "Dish Washing",
+      label: "Washing",
       isActive: false
     }, {
       name: "takecare",
       price: "100",
       type: "hourly",
       image: "",
-      label: "Car Cleaning",
+      label: "Care Taker",
       isActive: false
     }, {
       name: "nanny",
       price: "100",
       type: "hourly",
       image: "",
-      label: "All Rounder",
+      label: "Baby Sitting",
       isActive: false
     }];
   // ownlocation: Location;
@@ -72,6 +72,10 @@ export class LandingPageComponent implements OnInit {
           lng : position.coords.longitude 
         };
 
+        this.searchLocation={
+          lat: (position.coords.latitude + 0.12),
+          lng: position.coords.longitude 
+        }
         this.fetchLocationName(this.ownLocation);
       });
     }else{
