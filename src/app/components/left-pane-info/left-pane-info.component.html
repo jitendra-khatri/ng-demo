@@ -4,7 +4,7 @@
 		</div>
 	</div>
 	<ul class="bbr_furtherLinks">
-		<li class="bbr_nodes" *ngFor="let node of nodeLinks" (click)="loadRightPane(node.value)" [ngClass]="{'ups-active':node.isActive}">
+		<li class="bbr_nodes" *ngFor="let node of nodeLinks" (click)="loadRightPane(node)" [ngClass]="{'ups-active':node.isActive}">
 			{{node.label}}
 		</li>	
 	</ul>

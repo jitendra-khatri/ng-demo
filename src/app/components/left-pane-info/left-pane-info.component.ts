@@ -70,4 +70,15 @@ export class LeftPaneInfoComponent implements OnInit {
         return user;
     }
 
+    loadRightPane(node){
+        // console.log(node);
+        let newNodes= this.nodeLinks.filter(link=>{
+            if(link.isActive){
+                link.isActive=false;
+            }
+        });
+
+        this.nodeLinks[(node.value-1)].isActive=true;
+    }
+
 }

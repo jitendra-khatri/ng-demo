@@ -54,7 +54,14 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate(['/main']);
+                    console.log(data.data.user_type)
+                    if(data && data.data){
+                        if (data.data.user_type =='consumer'){
+                            this.router.navigate(['/consumer']);
+                        }else{
+                            this.router.navigate(['/main-provider']);
+                        }
+                    }
                 },
                 error => {
                     this.alertService.error(error);

@@ -24,6 +24,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { HeaderComponent } from './components/global/header/header.component';
 import { FooterComponent } from './components/global/footer/footer.component';
+import { MainProvidertemplateComponent } from './components/main-provider/main-providertemplate/main-providertemplate.component';
+import { HistoryComponentComponent } from './components/history-component/history-component.component';
 
 @NgModule({
 
@@ -53,7 +55,9 @@ declarations: [
 		RegisterComponent,
 		MainPageComponent,
 		HeaderComponent,
-		FooterComponent		],
+		FooterComponent,
+		MainProvidertemplateComponent,
+		HistoryComponentComponent		],
   providers: [ GLOBAL_VARIABLE],
   bootstrap: [AppComponent]
 })
