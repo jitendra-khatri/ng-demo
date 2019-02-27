@@ -22,15 +22,18 @@ export class AuthenticationService {
 
     login(username: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/users/login`, { username, password })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                }
+            .pipe(map(_response => {
 
-                return user;
+                if(_response.code == 200) {
+                    if (_response.data && _response.data.access_token) {
+                        // store user details and jwt token in local storage to keep user logged in between page refreshes
+                        localStorage.setItem('currentUser', JSON.stringify(_response.data));
+                        localStorage.setItem('BB_ACCESS_TOKEN', _response.data.access_token);
+                    }
+                }
+                this.currentUserSubject.next(_response);
+
+                return _response;
             }));
     }
 	

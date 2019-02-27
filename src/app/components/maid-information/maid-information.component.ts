@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-maid-information',
@@ -8,7 +8,16 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 export class MaidInformationComponent implements OnInit {
 
   userImgPath:string;
-  ratingIco:string;  
+  ratingIco:string;
+  
+  @Input() maidMobile: string;
+  @Input() maidAge: string;
+  @Input() maidName: string;
+  @Input() maidRating: string;
+  @Input() bookingId:string;
+  @Input() maidLocation : any;
+  @Input() bookingLocation : any;
+
   constructor() { 
     this.userImgPath = '/assets/images/user-icon.png';
     this.ratingIco = '/assets/images/rating.png'

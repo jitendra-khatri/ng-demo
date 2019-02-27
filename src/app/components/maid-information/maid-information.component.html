@@ -4,14 +4,14 @@
         <img [src]="userImgPath" alt="Maid name" />
     </div>
     <div class="bbr_infocont">
-      <h2>Hament Aggarwal <strong>28</strong></h2>
+      <h2>{{maidName}}<strong> {{maidAge}}</strong></h2>
       <div class="bbr_info">
-        <p class="bbr_rating"><strong>4.5</strong> </p>
-        <p class="bbr_phone"><strong>9650193556</strong></p>
+        <p class="bbr_rating"><strong>{{maidRating}}</strong> </p>
+        <p class="bbr_phone"><strong>{{maidMobile}}</strong></p>
       </div>
     </div>
       <div class="bbr_btns">
-<button type="button" id="cancel" name="cancel" class="btn btn-default" (click)="SearchAgain()">Cancel</button>
+        <button type="button" id="cancel" name="cancel" class="btn btn-default" (click)="SearchAgain()">Cancel</button>
       </div>
   </div>
 </div>

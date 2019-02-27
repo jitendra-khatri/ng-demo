@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { GeocodeConverterService} from '../../service/geocode-converter.service';
+import { BookingService } from '../../service/booking.service';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { } from 'googlemaps';
 
@@ -18,6 +19,14 @@ export class LandingPageComponent implements OnInit {
   activeServices:Object;
    zoom: number= 16;
    isSearch:boolean= false;
+   activeServiceName: string;
+   maidName : string;
+   maidMobile : string;
+   maidAge : string;
+   maidRating : string;
+   bookingId : string;
+   bookingLocation : string;
+   maidLocation : string;
 
   ownLocation:any ;
   searchLocation: any;
@@ -51,7 +60,7 @@ export class LandingPageComponent implements OnInit {
       label: "Car Cleaning",
       isActive: false
     }, {
-      name: "nanny",
+      name: "allrounder",
       price: "100",
       type: "hourly",
       image: "",
@@ -60,7 +69,7 @@ export class LandingPageComponent implements OnInit {
     }];
   // ownlocation: Location;
 
-  constructor(private GeoService: GeocodeConverterService, currentlocation: Location) {
+  constructor(private GeoService: GeocodeConverterService, currentlocation: Location, private _bookingService : BookingService) {
     // this.ownlocation = currentlocation;
     console.log("hello world");
     if (navigator.geolocation){
@@ -108,6 +117,7 @@ export class LandingPageComponent implements OnInit {
     //console.log(this.listServices);
     this.listServices[index].isActive=true;
     this.activeServices = this.listServices[index];
+    this.activeServiceName = this.listServices[index].name;
   }
 
   activeSearch(){
@@ -115,5 +125,21 @@ export class LandingPageComponent implements OnInit {
     if(this.searchLocation==undefined){
       this.searchLocation = this.ownLocation;
     }
+
+    this._bookingService.book(this.activeServiceName, this.latitude, this.longitude).subscribe((_response) => {
+      debugger;
+      if(_response.code != 200) {
+        alert('Error in Booking Maid.');
+        return false;
+      }
+
+      this.bookingId = _response.data.booking_details.id;
+      this.maidName = _response.data.booking_details.provider_details.first_name + ' ' + _response.data.booking_details.provider_details.last_name;
+      this.maidMobile = _response.data.booking_details.provider_details.mobile;
+      this.maidAge = _response.data.booking_details.provider_details.age;
+      this.maidRating = (_response.data.booking_details.provider_details.rating) ? _response.data.booking_details.provider_details.rating : '4.3';
+      this.bookingLocation = (_response.data.booking_details.location).join(',');
+      this.maidLocation = (_response.data.booking_details.provider_details.location).join(',');
+    });
   }
 }

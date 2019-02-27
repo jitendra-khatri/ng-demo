@@ -2,7 +2,7 @@
 	<div class="bbr_showMap">
 		<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">  
 			<agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true" (dragEnd)="draggableEnd($event)" *ngIf="!isSearch"></agm-marker>
-			<agm-direction [origin]="searchLocation" [destination]="ownLocation" *ngIf="isSearch"></agm-direction>
+			<agm-direction [origin]="maidLocation" [destination]="bookingLocation" *ngIf="isSearch"></agm-direction>
 		</agm-map>
 	</div>
 	<div class="bbr_mapOverlay">
@@ -19,13 +19,13 @@
 					</li>
 				</ul>
 				<div class="searchButton">
-					<button class="bbr_searchBtn" *ngIf="locationName!='' && activeServices && activeServices.isActive" (click)="activeSearch()">Search Maids</button>
+					<button class="bbr_searchBtn" *ngIf="locationName!='' && activeServices && activeServices.isActive" (click)="activeSearch()">Book Maid</button>
 				</div>
 			</div>
 		</ng-container>
 		<ng-container *ngIf="isSearch">
 			<div class="bbr_mapOverlay">
-				<app-maid-information></app-maid-information>
+				<app-maid-information [maidName]="maidName" [maidAge]="maidAge" [maidMobile]="maidMobile" [maidRating]="maidRating" [bookingId]="bookingId" [bookingLocation]="bookingLocation" [maidLocation]="maidLocation"></app-maid-information>
 			</div>
 		</ng-container>	
 	</div>
