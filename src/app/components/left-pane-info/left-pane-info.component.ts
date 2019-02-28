@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
     selector: 'app-left-pane-info',
@@ -39,7 +41,7 @@ export class LeftPaneInfoComponent implements OnInit {
             value: 7,
             isActive: false
         }];
-    constructor() {
+    constructor(private route: ActivatedRoute, private router: Router) {
 
         this.userImgPath = '/assets/images/user-icon.png';
         this.userName = 'Hament Aggarwal';
@@ -79,6 +81,11 @@ export class LeftPaneInfoComponent implements OnInit {
         });
 
         this.nodeLinks[(node.value-1)].isActive=true;
+        if(node.value==7){
+            this.router.navigate(['/']);
+        }
     }
+
+    
 
 }

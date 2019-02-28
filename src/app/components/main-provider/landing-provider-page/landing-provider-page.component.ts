@@ -62,7 +62,7 @@ export class LandingProviderPageComponent implements OnInit {
 
   constructor(private GeoService: GeocodeConverterService, currentlocation: Location) {
     // this.ownlocation = currentlocation;
-    console.log("hello world");
+    // console.log("hello world");
     if (navigator.geolocation){
       navigator.geolocation.getCurrentPosition((position) => {
         this.longitude = position.coords.longitude;

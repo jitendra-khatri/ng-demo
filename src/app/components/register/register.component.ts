@@ -47,8 +47,9 @@ export class RegisterComponent implements OnInit {
             email :  ['', Validators.required],
             mobile :  ['', Validators.required],
             password: ['', Validators.required], 
-             service_provider: [false, Validators.required],
-            // applicable_services: ['', Validators.required]
+            service_provider: [false, Validators.required],
+            applicable_services: [[]],
+            applicable_areas:[[]]
         });
         this.ServicesList = [
             { item_id: 1, item_text: 'Cooking' },

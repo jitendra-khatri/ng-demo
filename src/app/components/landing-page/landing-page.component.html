@@ -23,10 +23,16 @@
 				</div>
 			</div>
 		</ng-container>
-		<ng-container *ngIf="isSearch">
-			<div class="bbr_mapOverlay">
-				<app-maid-information [maidName]="maidName" [maidAge]="maidAge" [maidMobile]="maidMobile" [maidRating]="maidRating" [bookingId]="bookingId" [bookingLocation]="bookingLocation" [maidLocation]="maidLocation"></app-maid-information>
-			</div>
-		</ng-container>	
+<ng-container *ngIf="isSearch && !bookingFailed">
+	<div class="bbr_mapOverlay">
+		<app-maid-information [maidName]="maidName" [maidAge]="maidAge" [maidMobile]="maidMobile" [maidRating]="maidRating" [bookingId]="bookingId" [bookingLocation]="bookingLocation" [maidLocation]="maidLocation"></app-maid-information>
+	</div> 
+</ng-container>	
+	<ng-container *ngIf="isSearch && bookingFailed">
+<div class="bbr_mapOverlay">
+		
+		<strong>Helpers not available in your area.</strong><button class="btn btn-primary" (click)="pageRefresh()" style="float:right;">Search Again</button>
+</div>
+		</ng-container>
 	</div>
 </div> 

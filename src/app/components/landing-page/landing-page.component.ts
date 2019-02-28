@@ -14,8 +14,8 @@ declare var $: any;
 })
 export class LandingPageComponent implements OnInit {
   
-   latitude: number ;
-   longitude: number;
+  latitude: number = 28.509653999999998;
+  longitude: number = 77.0704562;
   activeServices:Object;
    zoom: number= 16;
    isSearch:boolean= false;
@@ -27,7 +27,7 @@ export class LandingPageComponent implements OnInit {
    bookingId : string;
    bookingLocation : string;
    maidLocation : string;
-
+  bookingFailed:boolean=false;
   ownLocation:any ;
   searchLocation: any;
   locationName:string;
@@ -74,6 +74,7 @@ export class LandingPageComponent implements OnInit {
     console.log("hello world");
     if (navigator.geolocation){
       navigator.geolocation.getCurrentPosition((position) => {
+       
         this.longitude = position.coords.longitude;
         this.latitude = position.coords.latitude;
          this.ownLocation={
@@ -82,6 +83,11 @@ export class LandingPageComponent implements OnInit {
         };
 
         this.fetchLocationName(this.ownLocation);
+      },(error)=>{
+          this.ownLocation = {
+            lat: this.longitude,
+            lng: this.latitude
+          };
       });
     }else{
       alert("Kindly share your GeoLocation");
@@ -127,19 +133,29 @@ export class LandingPageComponent implements OnInit {
     }
 
     this._bookingService.book(this.activeServiceName, this.latitude, this.longitude).subscribe((_response) => {
-      debugger;
+      // debugger;
       if(_response.code != 200) {
         alert('Error in Booking Maid.');
         return false;
       }
+      if (_response.data && _response.data.booking_details && Object.keys(_response.data.booking_details).length>0 ){
+        this.bookingId = _response.data.booking_details.id;
+        this.maidName = _response.data.booking_details.provider_details.first_name + ' ' + _response.data.booking_details.provider_details.last_name;
+        this.maidMobile = _response.data.booking_details.provider_details.mobile;
+        this.maidAge = _response.data.booking_details.provider_details.age;
+        this.maidRating = (_response.data.booking_details.provider_details.rating) ? _response.data.booking_details.provider_details.rating : '4.3';
+        this.bookingLocation = (_response.data.booking_details.location).join(',');
+        this.maidLocation = (_response.data.booking_details.provider_details.location).join(',');
 
-      this.bookingId = _response.data.booking_details.id;
-      this.maidName = _response.data.booking_details.provider_details.first_name + ' ' + _response.data.booking_details.provider_details.last_name;
-      this.maidMobile = _response.data.booking_details.provider_details.mobile;
-      this.maidAge = _response.data.booking_details.provider_details.age;
-      this.maidRating = (_response.data.booking_details.provider_details.rating) ? _response.data.booking_details.provider_details.rating : '4.3';
-      this.bookingLocation = (_response.data.booking_details.location).join(',');
-      this.maidLocation = (_response.data.booking_details.provider_details.location).join(',');
+      }else{
+        this.bookingFailed=true;
+      }
     });
+  }
+
+  pageRefresh(){
+    this.isSearch=false;
+    this.bookingFailed=false;
+    
   }
 }

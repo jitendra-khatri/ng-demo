@@ -122,8 +122,8 @@
         [placeholder]="'Services offered'"
         [data]="ServicesList"
         [(ngModel)]="applicable_services"
+        formControlName="applicable_services"
         [settings]="ServicesListSettings"
-        [ngModelOptions]="{standalone: true}"
         (onSelect)="onItemSelect($event)"
         (onSelectAll)="onSelectAll($event)">
     </ng-multiselect-dropdown>
@@ -134,9 +134,9 @@
                 [placeholder]="'Service Location'"
                 [data]="ServicesLoc"
                 [(ngModel)]="applicable_areas"
+formControlName="applicable_areas"
                 [settings]="ServicesLocSettings"
                 (onSelect)="onItemSelect($event)"
-                [ngModelOptions]="{standalone: true}"
                 (onSelectAll)="onSelectAll($event)">
             </ng-multiselect-dropdown>
     </div>
